@@ -1,0 +1,237 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LearnExpress | Welcome</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="home-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGradient" x1="14" y1="14" x2="86" y2="86" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ff7a1a" />
+              <stop offset="1" stop-color="#ffbb4c" />
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="80" height="80" rx="24" fill="url(#logoGradient)" />
+          <path d="M34 34C38 28 46 28 52 34C58 40 58 50 52 56L40 68C38 70 34 70 32 68C30 66 30 62 32 60L42 50C44 48 44 44 42 42C38 38 34 38 34 34Z" fill="#ffffff" />
+          <path d="M60 34H70C72 34 74 36 74 38V70C74 72 72 74 70 74H60C58 74 56 72 56 70V38C56 36 58 34 60 34Z" fill="#ffffff" />
+        </svg>
+        <span>LearnExpress</span>
+      </a>
+      <nav class="main-nav">
+        <!-- Dynamically populated by script.js -->
+        <a href="#home">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Sign Up</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Welcome to your future classroom</p>
+          <h1>Learn smarter, stay motivated, and crush your goals.</h1>
+          <p>LearnExpress brings your high school life together in one place: courses, assignments, exams, resources, community and a demo dashboard built just for you.</p>
+          <div class="hero-actions">
+            <a href="register.html" class="btn btn-primary" id="hero-signup">Sign Up Free</a>
+            <a href="login.html" class="btn btn-secondary" id="hero-signin">Sign In</a>
+            <a href="courses.html" class="btn btn-secondary" id="hero-browse">Browse Courses</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <section class="image-strip">
+      <div class="container image-row">
+        <a href="courses.html" class="image-card clickable-card" id="card-learn-anytime">
+          <img src="https://images.unsplash.com/photo-1498079022511-d15614cb1c02?auto=format&fit=crop&w=800&q=80" alt="Student using a laptop for learning" />
+          <h3>Learn anytime</h3>
+          <p>Flexible lessons and interactive tools built for your schedule.</p>
+          <span class="card-cta">Explore Courses →</span>
+        </a>
+        <a href="resources.html" class="image-card clickable-card" id="card-stay-focused">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Student taking notes" />
+          <h3>Stay focused</h3>
+          <p>Study with clear guides, quick summaries, and visual progress tracking.</p>
+          <span class="card-cta">View Resources →</span>
+        </a>
+        <a href="community.html" class="image-card clickable-card" id="card-collaborate">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Students reviewing work together" />
+          <h3>Collaborate easily</h3>
+          <p>Share ideas, compare notes, and grow with peers in a safe place.</p>
+          <span class="card-cta">Join Community →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="value-prop" class="feature-section">
+      <div class="container section-heading">
+        <h2>Your Ultimate High School Companion</h2>
+        <p><strong>LearnExpress</strong> is a digital learning hub exclusively designed for high school students. We give you the right tools to turn study struggles into success stories.</p>
+      </div>
+      <div class="feature-grid">
+        <a href="courses.html" class="feature-card clickable-card" id="vp-what">
+          <div class="card-icon-circle">📖</div>
+          <h3>What is it?</h3>
+          <p>An all-in-one platform combining lessons, assignments, quizzes, and study resources tailored to your curriculum.</p>
+          <span class="card-cta">See Courses →</span>
+        </a>
+        <a href="register.html" class="feature-card clickable-card" id="vp-who">
+          <div class="card-icon-circle">🎓</div>
+          <h3>Who is it for?</h3>
+          <p>High schoolers who want to study smarter, stay organized, and crush their academic goals without the stress.</p>
+          <span class="card-cta">Join Now →</span>
+        </a>
+        <a href="register.html" class="feature-card clickable-card" id="vp-why">
+          <div class="card-icon-circle">⚡</div>
+          <h3>Why care?</h3>
+          <p>Because your time is valuable. LearnExpress helps you finish homework faster, ace exams, and get your free time back.</p>
+          <span class="card-cta">Get Started →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="course-categories" class="section-alt">
+      <div class="container section-heading">
+        <h2>Find the Right Course for You</h2>
+        <p>Explore a variety of subjects designed to match your school syllabus.</p>
+      </div>
+      <div class="feature-grid">
+        <a href="courses.html" class="feature-card clickable-card" id="cat-math">
+          <div class="card-icon-circle">🧮</div>
+          <h3>Mathematics</h3>
+          <p>Algebra, Geometry, Calculus, and everything in between.</p>
+          <span class="card-cta">Browse Math →</span>
+        </a>
+        <a href="courses.html" class="feature-card clickable-card" id="cat-science">
+          <div class="card-icon-circle">🧬</div>
+          <h3>Sciences</h3>
+          <p>Biology, Chemistry, and Physics explained simply.</p>
+          <span class="card-cta">Browse Sciences →</span>
+        </a>
+        <a href="courses.html" class="feature-card clickable-card" id="cat-humanities">
+          <div class="card-icon-circle">📚</div>
+          <h3>Humanities</h3>
+          <p>History, Literature, and Languages to expand your mind.</p>
+          <span class="card-cta">Browse Humanities →</span>
+        </a>
+      </div>
+      <div class="container" style="text-align:center; margin-top:2rem;">
+        <a href="courses.html" class="btn btn-primary" id="btn-all-courses">View All Courses</a>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="feature-section">
+      <div class="container section-heading">
+        <h2>How It Works</h2>
+        <p>Three simple steps to supercharge your study routine.</p>
+      </div>
+      <div class="feature-grid steps-grid">
+        <a href="register.html" class="feature-card clickable-card step-card" id="step-1">
+          <div class="step-number">1</div>
+          <h3>Sign Up &amp; Set Up</h3>
+          <p>Create your free account and pick the subjects you're focusing on this semester.</p>
+          <span class="card-cta">Create Account →</span>
+        </a>
+        <a href="courses.html" class="feature-card clickable-card step-card" id="step-2">
+          <div class="step-number">2</div>
+          <h3>Learn &amp; Practice</h3>
+          <p>Watch video lessons, read study guides, and test your knowledge with interactive quizzes.</p>
+          <span class="card-cta">Explore Lessons →</span>
+        </a>
+        <a href="dashboard.html" class="feature-card clickable-card step-card" id="step-3">
+          <div class="step-number">3</div>
+          <h3>Track Progress</h3>
+          <p>Use your personalized dashboard to monitor your grades, streaks, and upcoming deadlines.</p>
+          <span class="card-cta">See Dashboard →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="social-proof" class="section-alt">
+      <div class="container section-heading">
+        <h2>Don't Just Take Our Word For It</h2>
+        <p>Join thousands of students who are already learning better.</p>
+      </div>
+      <div class="feature-grid testimonial-grid">
+        <article class="feature-card testimonial-card" id="testimonial-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"LearnExpress helped me bring my math grade from a C to an A! The practice quizzes are a lifesaver."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SM</div>
+            <div>
+              <h4>Sarah M.</h4>
+              <span>11th Grade · Harare</span>
+            </div>
+          </div>
+        </article>
+        <article class="feature-card testimonial-card" id="testimonial-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Having all my assignments and deadlines in one place means I actually get to sleep before midnight now."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DK</div>
+            <div>
+              <h4>David K.</h4>
+              <span>12th Grade · Bulawayo</span>
+            </div>
+          </div>
+        </article>
+        <article class="feature-card testimonial-card" id="testimonial-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"The study guides are straight to the point. Exactly what you need right before a big history exam."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CT</div>
+            <div>
+              <h4>Chloe T.</h4>
+              <span>10th Grade · Mutare</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top animate-fade-up">
+      <div class="footer-brand">
+        <strong>LearnExpress</strong>
+        <p class="footer-tagline">Trusted learning support for students, teachers, and parents.</p>
+      </div>
+      <div class="footer-social">
+        <span>Follow us:</span>
+        <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a>
+        <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+      </div>
+      <div class="footer-contact">
+        <div><span class="footer-icon">📞</span><a href="tel:+260777187897">+260 777 187 897</a></div>
+        <div><span class="footer-icon">✉️</span><a href="mailto:infor@new25.co.zw">infor@new25.co.zw</a></div>
+        <div><span class="footer-icon">📍</span><span>Melisa House, 107 Kasupe Road</span></div>
+      </div>
+    </div>
+    <div class="container footer-inner">
+      <p>&copy; 2026 LearnExpress. Built for high school students who want to stay ahead.</p>
+      <div class="footer-links">
+        <a href="#home">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

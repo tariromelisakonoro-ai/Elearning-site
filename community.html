@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community | LearnExpress</title>
+  <meta name="description" content="Connect with classmates and instructors, join study groups, view announcements, and stay engaged with the LearnExpress community." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── Community Hero ── */
+    .community-hero {
+      padding: 7rem 0 5rem;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(255,122,26,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 80%, rgba(67,97,238,0.10) 0%, transparent 55%),
+        var(--surface);
+      text-align: center;
+    }
+    .community-hero h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--heading) 30%, var(--primary));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.02em;
+    }
+    .community-hero > .container > p {
+      max-width: 600px; margin: 0 auto 2.5rem;
+      color: var(--muted); font-size: 1.1rem; line-height: 1.8;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat strong {
+      display: block; font-size: 2rem; font-weight: 800;
+      color: var(--primary); line-height: 1; margin-bottom: 0.3rem;
+    }
+    .hero-stat span { font-size: 0.88rem; color:var(--muted); font-weight:500; }
+
+    /* ── Pillar Cards ── */
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem;
+    }
+    .pillar-card {
+      border-radius: 22px; padding: 2rem 1.75rem; color: #fff; position: relative;
+      overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer; user-select: none;
+    }
+    .pillar-card:hover, .pillar-card.active-pillar { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(0,0,0,0.18); }
+    .pillar-card.active-pillar { outline: 3px solid rgba(255,255,255,0.7); }
+    .pillar-card::before {
+      content: ''; position: absolute; top: -40%; right: -20%;
+      width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.1);
+    }
+    .pillar-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .pillar-card p  { font-size: 0.88rem; opacity: 0.88; line-height: 1.6; margin: 0 0 1rem; }
+    .pillar-card .pill-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .pillar-card .pillar-cta { font-size:0.82rem; font-weight:700; opacity:0.9; text-decoration:underline; }
+    .pillar-card.forums  { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .pillar-card.qna     { background: linear-gradient(135deg, #f6d365, #fda085); }
+    .pillar-card.groups  { background: linear-gradient(135deg, #0ba360, #3cba92); }
+    .pillar-card.events  { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+    /* ── Announcements ── */
+    .announcements-section { padding: 4rem 0; }
+    #communityAnnouncementsFeed { display: grid; gap: 1.25rem; }
+    .announcement-item {
+      background: var(--glass-bg, rgba(255,255,255,0.85));
+      border: 1px solid rgba(255,122,26,0.15); border-left: 4px solid var(--primary);
+      border-radius: 16px; padding: 1.5rem 1.75rem; display: flex; gap: 1.25rem;
+      align-items: flex-start; backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: slideUpFade 0.5s ease forwards;
+    }
+    .announcement-item:hover { transform: translateX(4px); box-shadow: 0 8px 32px rgba(255,122,26,0.1); }
+    .announcement-icon {
+      font-size: 1.4rem; background: rgba(255,122,26,0.1);
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .announcement-body strong { display:block; font-size:1rem; font-weight:700; color:var(--heading); margin-bottom:0.3rem; }
+    .announcement-body p { font-size:0.9rem; color:var(--muted); margin:0 0 0.5rem; line-height:1.6; }
+    .announcement-meta { font-size:0.78rem; color:var(--primary); font-weight:600; }
+    .ann-target-badge {
+      display:inline-block; font-size:0.72rem; padding:0.15rem 0.5rem;
+      border-radius:999px; background:rgba(67,97,238,0.1); color:#3358cc; font-weight:700; margin-left:0.5rem;
+    }
+
+    /* ── Q&A Forum Feed ── */
+    .forum-section { padding: 4rem 0; background: var(--surface); }
+    .forum-filter-bar {
+      display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .filter-btn {
+      padding: 0.45rem 1rem; border-radius: 999px; border: 1.5px solid rgba(0,0,0,0.1);
+      background: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s ease; color: var(--muted);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary); color: #fff; border-color: var(--primary);
+    }
+    #qaFeed { display: grid; gap: 1rem; }
+    .qa-card {
+      background: var(--glass-bg, rgba(255,255,255,0.9)); border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px; padding: 1.5rem 1.75rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: slideUpFade 0.4s ease forwards;
+    }
+    .qa-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .qa-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .qa-card h3 { font-size: 1rem; font-weight: 700; color: var(--heading); margin: 0 0 0.4rem; }
+    .qa-card .qa-body { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin: 0.5rem 0 1rem; }
+    .qa-meta { font-size: 0.78rem; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .qa-subject-badge {
+      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 999px;
+      background: rgba(255,122,26,0.1); color: var(--primary); font-size: 0.75rem; font-weight: 700;
+    }
+    .qa-upvote-btn {
+      display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.85rem;
+      border-radius: 999px; border: 1.5px solid rgba(0,0,0,0.1);
+      background: #fff; cursor: pointer; font-weight: 600; font-size: 0.85rem;
+      transition: all 0.2s ease; color: var(--muted); flex-shrink: 0;
+    }
+    .qa-upvote-btn:hover, .qa-upvote-btn.voted {
+      background: rgba(255,122,26,0.1); border-color: var(--primary); color: var(--primary);
+    }
+
+    /* ── Ask Section ── */
+    .ask-section {
+      padding: 5rem 0;
+      background: radial-gradient(ellipse at 0% 50%, rgba(67,97,238,0.07) 0%, transparent 60%), var(--surface);
+    }
+    .ask-card {
+      max-width: 680px; margin: 0 auto;
+      background: var(--glass-bg, rgba(255,255,255,0.95));
+      border: 1px solid var(--glass-border); border-radius: 24px; padding: 2.5rem;
+      backdrop-filter: blur(16px); box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+    }
+    .ask-card h2 { font-size: 1.5rem; font-weight: 700; color: var(--heading); margin-bottom: 0.5rem; }
+    .ask-card > p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.92rem; }
+    .ask-form { display: flex; flex-direction: column; gap: 1rem; }
+    .ask-form input, .ask-form textarea, .ask-form select {
+      padding: 0.9rem 1.1rem; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.95rem; font-family: inherit; background: rgba(0,0,0,0.02);
+      width: 100%; box-sizing: border-box; transition: border-color 0.2s;
+    }
+    .ask-form input:focus, .ask-form textarea:focus, .ask-form select:focus {
+      outline: none; border-color: var(--primary); background: #fff;
+    }
+    .ask-form textarea { resize: vertical; min-height: 120px; }
+    .ask-login-note { font-size:0.82rem; color:var(--muted); text-align:center; margin-top:0.5rem; }
+    .ask-login-note a { color:var(--primary); }
+
+    /* ── Features strip ── */
+    .comm-features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; padding: 3rem 0;
+    }
+    .comm-feature-card {
+      background: var(--glass-bg, rgba(255,255,255,0.8));
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.4));
+      border-radius: 20px; padding: 2rem 1.5rem; text-align: center;
+      backdrop-filter: blur(12px); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .comm-feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(255,122,26,0.1); }
+    .comm-feature-icon {
+      font-size: 2rem; background: rgba(255,122,26,0.1);
+      width: 60px; height: 60px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
+    }
+    .comm-feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.5rem; }
+    .comm-feature-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* ── Explore Grid ── */
+    .explore-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .explore-card {
+      background: #fff; border: 1px solid rgba(35,51,91,0.07);
+      border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; gap: 0.75rem;
+      transition: all 0.3s ease;
+    }
+    .explore-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(255,122,26,0.08); }
+    .explore-card .explore-emoji { font-size: 2rem; }
+    .explore-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin: 0; }
+    .explore-card p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6; flex: 1; }
+  </style>
+</head>
+<body class="community-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGradient" x1="14" y1="14" x2="86" y2="86" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ff7a1a" />
+              <stop offset="1" stop-color="#ffbb4c" />
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="80" height="80" rx="24" fill="url(#logoGradient)" />
+          <path d="M34 34C38 28 46 28 52 34C58 40 58 50 52 56L40 68C38 70 34 70 32 68C30 66 30 62 32 60L42 50C44 48 44 44 42 42C38 38 34 38 34 34Z" fill="#ffffff" />
+          <path d="M60 34H70C72 34 74 36 74 38V70C74 72 72 74 70 74H60C58 74 56 72 56 70V38C56 36 58 34 60 34Z" fill="#ffffff" />
+        </svg>
+        <span>LearnExpress</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="assignments.html">Assignments</a>
+        <a href="exams.html">Exams</a>
+        <a href="resources.html">Resources</a>
+        <a href="community.html" class="active">Community</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">Menu</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="community-hero">
+      <div class="container">
+        <p class="eyebrow">Connect &amp; Collaborate</p>
+        <h1>Your learning community<br>starts here.</h1>
+        <p>Ask questions, get answers, read announcements, and grow alongside your peers and instructors — all in one place.</p>
+        <div class="hero-actions">
+          <a href="#announcements" class="btn btn-primary">📢 View Announcements</a>
+          <a href="#ask" class="btn btn-secondary">💡 Post a Question</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong id="heroStatStudents">—</strong><span>Active Members</span></div>
+          <div class="hero-stat"><strong id="heroStatQuestions">—</strong><span>Questions Asked</span></div>
+          <div class="hero-stat"><strong id="heroStatAnnouncements">—</strong><span>Announcements</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILLAR CARDS — click to filter Q&A feed -->
+    <section class="feature-section" style="padding: 4rem 0 2rem;">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Jump to a section</h2>
+          <p>Click a card to filter the Q&amp;A feed by subject, or scroll to announcements below.</p>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar-card forums" data-filter="all" id="pillar-all">
+            <span class="pill-icon">💬</span>
+            <h3>All Discussions</h3>
+            <p>Browse all community questions and threads from every subject.</p>
+            <span class="pillar-cta">View all →</span>
+          </div>
+          <div class="pillar-card qna" data-filter="Mathematics" id="pillar-math">
+            <span class="pill-icon">🔢</span>
+            <h3>Mathematics</h3>
+            <p>Algebra, calculus, statistics — get help with any maths topic.</p>
+            <span class="pillar-cta">Browse Maths →</span>
+          </div>
+          <div class="pillar-card groups" data-filter="Sciences" id="pillar-sci">
+            <span class="pill-icon">🔬</span>
+            <h3>Sciences</h3>
+            <p>Biology, chemistry, physics questions and study support.</p>
+            <span class="pillar-cta">Browse Sciences →</span>
+          </div>
+          <div class="pillar-card events" data-filter="English Language" id="pillar-eng">
+            <span class="pill-icon">📖</span>
+            <h3>English</h3>
+            <p>Essays, comprehension, and language study threads.</p>
+            <span class="pillar-cta">Browse English →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE ANNOUNCEMENTS -->
+    <section id="announcements" class="announcements-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>📢 Latest Announcements</h2>
+          <p>Stay informed with the latest platform updates and messages from your instructors and administration.</p>
+        </div>
+        <div id="communityAnnouncementsFeed">
+          <p class="dim-text" style="text-align:center; padding:3rem;">Loading announcements...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q&A FORUM FEED -->
+    <section id="forum" class="forum-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>💬 Community Q&amp;A</h2>
+          <p>Browse questions posted by students and instructors. Click a subject filter or a pillar card above to narrow the feed.</p>
+        </div>
+        <div class="forum-filter-bar">
+          <button class="filter-btn active" data-subject="all">All</button>
+          <button class="filter-btn" data-subject="Mathematics">Mathematics</button>
+          <button class="filter-btn" data-subject="Sciences">Sciences</button>
+          <button class="filter-btn" data-subject="English Language">English</button>
+          <button class="filter-btn" data-subject="History &amp; Social Studies">History</button>
+          <button class="filter-btn" data-subject="Business Studies">Business</button>
+          <button class="filter-btn" data-subject="Computer Science">Computer Sci</button>
+          <button class="filter-btn" data-subject="Other">Other</button>
+        </div>
+        <div id="qaFeed">
+          <p class="dim-text" style="text-align:center; padding:3rem;">Loading questions...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASK A QUESTION -->
+    <section id="ask" class="ask-section">
+      <div class="container">
+        <div class="ask-card">
+          <h2>💡 Ask the Community</h2>
+          <p>Have a question about coursework, exams, or study techniques? Post it below — peers and instructors will respond.</p>
+          <form class="ask-form" id="communityQuestionForm">
+            <input type="text" name="title" id="questionTitle" placeholder="Your question title..." required />
+            <select name="subject" id="questionSubject" required>
+              <option value="">Select a subject area...</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Sciences">Sciences</option>
+              <option value="English Language">English Language</option>
+              <option value="History &amp; Social Studies">History &amp; Social Studies</option>
+              <option value="Business Studies">Business Studies</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Other">Other</option>
+            </select>
+            <textarea name="body" id="questionBody" placeholder="Describe your question in detail..." rows="5"></textarea>
+            <div id="communityFormMsg" style="display:none;"></div>
+            <button type="submit" class="btn btn-primary" id="communityAskBtn">Post Question</button>
+          </form>
+          <p class="ask-login-note" id="loginNote" style="display:none;">
+            You are posting as a guest. <a href="login.html">Sign in</a> to track your questions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES STRIP -->
+    <section class="feature-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Built for collaborative learning</h2>
+          <p>Community features designed to make study sessions more effective and connected.</p>
+        </div>
+        <div class="comm-features">
+          <div class="comm-feature-card animate-cascade-up delay-1">
+            <div class="comm-feature-icon">🏆</div>
+            <h3>Weekly Challenges</h3>
+            <p>Compete in topic quizzes, earn badges, and track your rank among peers.</p>
+          </div>
+          <div class="comm-feature-card animate-cascade-up delay-2">
+            <div class="comm-feature-icon">👩‍🏫</div>
+            <h3>Teacher Interaction</h3>
+            <p>Send questions directly to instructors and get expert guidance and feedback.</p>
+          </div>
+          <div class="comm-feature-card animate-cascade-up delay-3">
+            <div class="comm-feature-icon">🗓️</div>
+            <h3>Live Sessions</h3>
+            <p>Join scheduled teacher-led sessions for exam tips and model answers.</p>
+          </div>
+          <div class="comm-feature-card animate-cascade-up delay-4">
+            <div class="comm-feature-icon">🤝</div>
+            <h3>Study Buddies</h3>
+            <p>Get matched with learners who share your exam goals for peer revision.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORE MORE -->
+    <section style="padding: 5rem 0; background: var(--surface);">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Keep exploring LearnExpress</h2>
+          <p>Community is more powerful when combined with active learning across the platform.</p>
+        </div>
+        <div class="explore-grid">
+          <div class="explore-card">
+            <span class="explore-emoji">📚</span>
+            <h3>Browse Courses</h3>
+            <p>Find lessons that match your discussion topics and group work needs.</p>
+            <a href="courses.html" class="btn btn-secondary btn-sm" style="align-self:flex-start; margin-top:0.5rem;">Go to Courses</a>
+          </div>
+          <div class="explore-card">
+            <span class="explore-emoji">📝</span>
+            <h3>Assignments</h3>
+            <p>Share assignment challenges with the community and get peer encouragement.</p>
+            <a href="assignments.html" class="btn btn-secondary btn-sm" style="align-self:flex-start; margin-top:0.5rem;">View Assignments</a>
+          </div>
+          <div class="explore-card">
+            <span class="explore-emoji">🧪</span>
+            <h3>Exams &amp; Quizzes</h3>
+            <p>Prepare together, share strategies, and review results with classmates.</p>
+            <a href="exams.html" class="btn btn-secondary btn-sm" style="align-self:flex-start; margin-top:0.5rem;">Open Exams</a>
+          </div>
+          <div class="explore-card">
+            <span class="explore-emoji">📁</span>
+            <h3>Study Resources</h3>
+            <p>Access instructor-uploaded materials and share them with your study group.</p>
+            <a href="resources.html" class="btn btn-secondary btn-sm" style="align-self:flex-start; margin-top:0.5rem;">View Resources</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 LearnExpress. Connect with peers, learn together, and stay engaged in your studies.</p>
+      <div class="footer-links"><a href="index.html">Back to home</a></div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=20260420a"></script>
+  <script>
+    // ── Helpers ──
+    function esc(str) {
+      return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function timeAgo(dateStr) {
+      const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+      if (diff < 60)    return 'just now';
+      if (diff < 3600)  return Math.floor(diff/60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+      return Math.floor(diff/86400) + 'd ago';
+    }
+
+    let currentSubject = 'all';
+
+    // ── Load Announcements ──
+    async function loadAnnouncements() {
+      const feed = document.getElementById('communityAnnouncementsFeed');
+      try {
+        const res  = await fetch('backend/admin_announcements.php');
+        const data = await res.json();
+        const ann = data.announcements || [];
+        document.getElementById('heroStatAnnouncements').textContent = ann.length || '0';
+
+        if (data.success && ann.length > 0) {
+          feed.innerHTML = ann.map((a, i) => `
+            <div class="announcement-item" style="animation-delay:${i * 0.08}s;">
+              <div class="announcement-icon">📣</div>
+              <div class="announcement-body">
+                <strong>${esc(a.title)}</strong>
+                <p>${esc(a.message)}</p>
+                <span class="announcement-meta">
+                  Posted by ${esc(a.author_name || 'LearnExpress Admin')}
+                  &nbsp;·&nbsp;
+                  ${timeAgo(a.created_at)}
+                  ${a.target_role && a.target_role !== 'all' ? `<span class="ann-target-badge">${esc(a.target_role)}s only</span>` : ''}
+                </span>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          feed.innerHTML = `
+            <div style="text-align:center; padding:4rem 2rem; background:var(--glass-bg,rgba(255,255,255,0.8)); border-radius:20px; border:1px dashed rgba(0,0,0,0.1);">
+              <span style="font-size:3rem; display:block; margin-bottom:1rem;">📭</span>
+              <strong style="display:block; margin-bottom:0.5rem; color:var(--heading);">No announcements yet</strong>
+              <p style="color:var(--muted); font-size:0.9rem; margin:0;">Check back soon — your instructors and admin will post updates here.</p>
+            </div>`;
+        }
+      } catch {
+        document.getElementById('communityAnnouncementsFeed').innerHTML = '<p style="text-align:center;color:var(--muted);padding:2rem;">Could not load announcements.</p>';
+      }
+    }
+
+    // ── Load Q&A Feed ──
+    async function loadQA(subject = 'all') {
+      const feed = document.getElementById('qaFeed');
+      feed.innerHTML = '<p class="dim-text" style="text-align:center;padding:2rem;">Loading...</p>';
+      currentSubject = subject;
+
+      // Sync filter bar
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.subject === subject);
+      });
+
+      try {
+        const url = subject === 'all' ? 'backend/community_questions.php' : `backend/community_questions.php?subject=${encodeURIComponent(subject)}`;
+        const res  = await fetch(url);
+        const data = await res.json();
+        const qs   = data.questions || [];
+
+        document.getElementById('heroStatQuestions').textContent = qs.length || '0';
+
+        if (qs.length === 0) {
+          feed.innerHTML = `
+            <div style="text-align:center; padding:4rem 2rem; background:rgba(255,255,255,0.8); border-radius:20px; border:1px dashed rgba(0,0,0,0.1);">
+              <span style="font-size:3rem; display:block; margin-bottom:1rem;">🗒️</span>
+              <strong style="color:var(--heading);">No questions yet${subject !== 'all' ? ' in ' + subject : ''}</strong>
+              <p style="color:var(--muted); margin-top:0.5rem; font-size:0.9rem;">Be the first to ask one!</p>
+              <a href="#ask" class="btn btn-primary btn-sm" style="margin-top:1rem; display:inline-block;">Ask a Question</a>
+            </div>`;
+          return;
+        }
+
+        feed.innerHTML = qs.map((q, i) => `
+          <div class="qa-card" style="animation-delay:${i * 0.06}s;">
+            <div class="qa-card-header">
+              <div>
+                <h3>${esc(q.title)}</h3>
+                <span class="qa-subject-badge">${esc(q.subject)}</span>
+              </div>
+              <button class="qa-upvote-btn ${q.my_vote ? 'voted' : ''}" data-qid="${q.id}" title="Upvote this question">
+                👍 <span class="vote-count">${q.upvotes || 0}</span>
+              </button>
+            </div>
+            ${q.body ? `<p class="qa-body">${esc(q.body)}</p>` : ''}
+            <div class="qa-meta">
+              <span>👤 ${esc(q.author || 'Anonymous')}</span>
+              <span>🕒 ${timeAgo(q.created_at)}</span>
+            </div>
+          </div>
+        `).join('');
+
+        // Bind upvote buttons
+        feed.querySelectorAll('.qa-upvote-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const qid = btn.dataset.qid;
+            try {
+              const r = await fetch('backend/community_questions.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'upvote', question_id: parseInt(qid) })
+              });
+              const d = await r.json();
+              if (d.success) {
+                const countEl = btn.querySelector('.vote-count');
+                const current = parseInt(countEl.textContent);
+                if (d.voted) {
+                  btn.classList.add('voted');
+                  countEl.textContent = current + 1;
+                } else {
+                  btn.classList.remove('voted');
+                  countEl.textContent = Math.max(0, current - 1);
+                }
+              } else {
+                alert(d.message || 'Could not upvote. Please log in.');
+              }
+            } catch { alert('Network error.'); }
+          });
+        });
+
+      } catch {
+        feed.innerHTML = '<p style="text-align:center;color:var(--muted);padding:2rem;">Could not load questions.</p>';
+      }
+    }
+
+    // ── Load hero stats (members) ──
+    async function loadHeroStats() {
+      try {
+        const res  = await fetch('backend/admin_stats.php');
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('heroStatStudents').textContent = data.stats.total_students || 0;
+        }
+      } catch {}
+    }
+
+    // ── Filter bar clicks ──
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => loadQA(btn.dataset.subject));
+    });
+
+    // ── Pillar card clicks → scroll + filter ──
+    document.querySelectorAll('.pillar-card[data-filter]').forEach(card => {
+      card.addEventListener('click', () => {
+        const filter = card.dataset.filter;
+        loadQA(filter);
+        document.getElementById('forum').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ── Ask question form ──
+    document.getElementById('communityQuestionForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const msgEl = document.getElementById('communityFormMsg');
+      const btn   = document.getElementById('communityAskBtn');
+      msgEl.style.display = 'none';
+      btn.disabled = true; btn.textContent = 'Posting...';
+
+      const title   = document.getElementById('questionTitle').value.trim();
+      const subject = document.getElementById('questionSubject').value;
+      const body    = document.getElementById('questionBody').value.trim();
+
+      if (!subject) {
+        msgEl.style.cssText = 'display:block; background:#fff3e0; color:#e65100; padding:0.8rem 1rem; border-radius:8px; font-size:0.9rem;';
+        msgEl.textContent = '⚠️ Please select a subject area.';
+        btn.disabled = false; btn.textContent = 'Post Question'; return;
+      }
+
+      try {
+        const res  = await fetch('backend/community_questions.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, subject, body })
+        });
+        const data = await res.json();
+        if (data.success) {
+          msgEl.style.cssText = 'display:block; background:#e8f5e9; color:#2e7d32; padding:0.8rem 1rem; border-radius:8px; font-size:0.9rem;';
+          msgEl.textContent = '✅ Your question has been posted! Scroll up to see it in the Q&A feed.';
+          this.reset();
+          // Reload the feed so question appears
+          setTimeout(() => loadQA(subject), 600);
+        } else {
+          msgEl.style.cssText = 'display:block; background:#ffebee; color:#c62828; padding:0.8rem 1rem; border-radius:8px; font-size:0.9rem;';
+          msgEl.textContent = '❌ ' + (data.message || 'Failed to post question.');
+        }
+      } catch {
+        msgEl.style.cssText = 'display:block; background:#ffebee; color:#c62828; padding:0.8rem 1rem; border-radius:8px; font-size:0.9rem;';
+        msgEl.textContent = '❌ Network error. Please try again.';
+      }
+      btn.disabled = false; btn.textContent = 'Post Question';
+    });
+
+    // ── Init all ──
+    loadAnnouncements();
+    loadQA('all');
+    loadHeroStats();
+  </script>
+</body>
+</html>

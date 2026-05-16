@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Results | LearnExpress</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .results-table-container {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .results-table th, .results-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .results-table th {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .results-table tbody tr:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    .grade-a {
+      color: #2e7d32;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .grade-b {
+      color: #0277bd;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .grade-c {
+      color: #f57f17;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .gpa-card {
+      background: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .gpa-card h2 {
+      margin: 0;
+      font-size: 3rem;
+      color: white;
+    }
+    .gpa-card p {
+      margin: 0;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="dashboard-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">LearnExpress</a>
+      <nav class="main-nav">
+        <!-- Dynamically populated by script.js -->
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="course-hero" style="padding: 4rem 1rem 2rem 1rem; text-align: center;">
+      <div class="container">
+        <h1>Your Academic Results</h1>
+        <p>Track your grades, term averages, and overall performance.</p>
+      </div>
+    </section>
+
+    <div class="container" style="max-width: 900px;">
+      
+      <div class="gpa-card">
+        <p>Current Cumulative GPA</p>
+        <h2>3.85 / 4.0</h2>
+        <p style="margin-top:0.5rem; font-size:0.9rem;">Excellent Standing</p>
+      </div>
+
+      <div class="results-table-container">
+        <div class="results-header">
+          <h2>Term 3 Academic Record</h2>
+          <button class="btn btn-secondary btn-sm" onclick="downloadTranscript()">Download Transcript</button>
+        </div>
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Instructor</th>
+              <th>Credits</th>
+              <th>Percentage</th>
+              <th>Final Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Advanced Mathematics</strong></td>
+              <td class="dim-text">Prof. Alan Turing</td>
+              <td>4.0</td>
+              <td>94%</td>
+              <td class="grade-a">A</td>
+            </tr>
+            <tr>
+              <td><strong>English Literature</strong></td>
+              <td class="dim-text">Dr. Maya Angelou</td>
+              <td>3.0</td>
+              <td>88%</td>
+              <td class="grade-b">B+</td>
+            </tr>
+            <tr>
+              <td><strong>Physics Fundamentals</strong></td>
+              <td class="dim-text">Dr. Albert Einstein</td>
+              <td>4.0</td>
+              <td>91%</td>
+              <td class="grade-a">A-</td>
+            </tr>
+            <tr>
+              <td><strong>World History</strong></td>
+              <td class="dim-text">Prof. Herodotus</td>
+              <td>3.0</td>
+              <td>85%</td>
+              <td class="grade-b">B</td>
+            </tr>
+            <tr>
+              <td><strong>Computer Science 101</strong></td>
+              <td class="dim-text">Ada Lovelace</td>
+              <td>4.0</td>
+              <td>98%</td>
+              <td class="grade-a">A+</td>
+            </tr>
+            <tr>
+              <td><strong>Chemistry</strong></td>
+              <td class="dim-text">Marie Curie</td>
+              <td>4.0</td>
+              <td>79%</td>
+              <td class="grade-c">C+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="margin-top: 4rem;">
+    <div class="container footer-inner">
+      <p>&copy; 2026 LearnExpress. Learn more, study better, and stay ahead.</p>
+      <div class="footer-links">
+        <a href="dashboard.html">Back to Dashboard</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="script.js"></script>
+  <script>
+    function downloadTranscript() {
+      const csvContent = "data:text/csv;charset=utf-8," 
+        + "Course Name,Instructor,Credits,Percentage,Final Grade\\n"
+        + "Advanced Mathematics,Prof. Alan Turing,4.0,94%,A\\n"
+        + "English Literature,Dr. Maya Angelou,3.0,88%,B+\\n"
+        + "Physics Fundamentals,Dr. Albert Einstein,4.0,91%,A-\\n"
+        + "World History,Prof. Herodotus,3.0,85%,B\\n"
+        + "Computer Science 101,Ada Lovelace,4.0,98%,A+\\n"
+        + "Chemistry,Marie Curie,4.0,79%,C+";
+        
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "LearnExpress_Transcript.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>

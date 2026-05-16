@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoices | LearnExpress</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .invoice-table-container {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .invoice-table th, .invoice-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .invoice-table th {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .invoice-table tbody tr:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    .status-paid {
+      color: #2e7d32;
+      font-weight: 600;
+      background: #e8f5e9;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+    .status-unpaid {
+      color: #c62828;
+      font-weight: 600;
+      background: #ffebee;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body class="dashboard-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">LearnExpress</a>
+      <nav class="main-nav">
+        <!-- Dynamically populated by script.js -->
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="course-hero" style="padding: 4rem 1rem 2rem 1rem; text-align: center;">
+      <div class="container">
+        <h1>Your Invoices</h1>
+        <p>Review your payments, outstanding balances, and billing history.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="invoice-table-container">
+        <div class="invoice-header">
+          <h2>Billing History</h2>
+          <div>
+            <strong>Total Balance:</strong> <span style="font-size: 1.2rem; color: var(--text-main); font-weight: 800;">$1,200.00</span>
+          </div>
+        </div>
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Invoice #</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>INV-2026-004</td>
+              <td>Oct 01, 2026</td>
+              <td>Term 3 Tuition Fee</td>
+              <td>$1,200.00</td>
+              <td><span class="status-unpaid">Unpaid</span></td>
+              <td><button class="btn btn-primary btn-sm">Pay Now</button></td>
+            </tr>
+            <tr>
+              <td>INV-2026-003</td>
+              <td>Jun 15, 2026</td>
+              <td>Term 2 Tuition Fee</td>
+              <td>$1,200.00</td>
+              <td><span class="status-paid">Paid</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading receipt...')">Receipt</button></td>
+            </tr>
+            <tr>
+              <td>INV-2026-002</td>
+              <td>Feb 10, 2026</td>
+              <td>Term 1 Tuition Fee</td>
+              <td>$1,200.00</td>
+              <td><span class="status-paid">Paid</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading receipt...')">Receipt</button></td>
+            </tr>
+            <tr>
+              <td>INV-2026-001</td>
+              <td>Jan 05, 2026</td>
+              <td>Annual Registration Fee</td>
+              <td>$150.00</td>
+              <td><span class="status-paid">Paid</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading receipt...')">Receipt</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="margin-top: 4rem;">
+    <div class="container footer-inner">
+      <p>&copy; 2026 LearnExpress. Learn more, study better, and stay ahead.</p>
+      <div class="footer-links">
+        <a href="dashboard.html">Back to Dashboard</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses | LearnExpress</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="courses-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGradient" x1="14" y1="14" x2="86" y2="86" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ff7a1a" />
+              <stop offset="1" stop-color="#ffbb4c" />
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="80" height="80" rx="24" fill="url(#logoGradient)" />
+          <path
+            d="M34 34C38 28 46 28 52 34C58 40 58 50 52 56L40 68C38 70 34 70 32 68C30 66 30 62 32 60L42 50C44 48 44 44 42 42C38 38 34 38 34 34Z"
+            fill="#ffffff" />
+          <path d="M60 34H70C72 34 74 36 74 38V70C74 72 72 74 70 74H60C58 74 56 72 56 70V38C56 36 58 34 60 34Z"
+            fill="#ffffff" />
+        </svg>
+        <span>LearnExpress</span>
+      </a>
+      <nav class="main-nav">
+        <!-- Dynamically populated by script.js -->
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Sign Up</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="course-hero">
+      <div class="container">
+        <p class="eyebrow" style="color:var(--primary); font-size: 0.9rem; font-weight:700;">Explore our curriculum</p>
+        <h1>Master any subject with <br />LearnExpress premium courses.</h1>
+        <p>Expertly crafted lessons for secondary school achievement.</p>
+      </div>
+    </section>
+
+    <!-- Dynamic courses from database are injected here by script.js -->
+    <div id="db-courses-section"></div>
+  </main>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 LearnExpress. Learn more, study better, and stay ahead.</p>
+      <div class="footer-links">
+        <a href="index.html">Back to home</a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>

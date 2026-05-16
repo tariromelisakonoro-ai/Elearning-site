@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | LearnExpress</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="profile-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGradient" x1="14" y1="14" x2="86" y2="86" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ff7a1a" />
+              <stop offset="1" stop-color="#ffbb4c" />
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="80" height="80" rx="24" fill="url(#logoGradient)" />
+          <path d="M34 34C38 28 46 28 52 34C58 40 58 50 52 56L40 68C38 70 34 70 32 68C30 66 30 62 32 60L42 50C44 48 44 44 42 42C38 38 34 38 34 34Z" fill="#ffffff" />
+          <path d="M60 34H70C72 34 74 36 74 38V70C74 72 72 74 70 74H60C58 74 56 72 56 70V38C56 36 58 34 60 34Z" fill="#ffffff" />
+        </svg>
+        <span>LearnExpress</span>
+      </a>
+      <nav class="main-nav">
+        <!-- Dynamically populated by script.js -->
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="assignments.html">Assignments</a>
+        <a href="exams.html">Exams</a>
+        <a href="resources.html">Resources</a>
+        <a href="community.html">Community</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">Menu</button>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <section class="profile-hero" style="padding-top: 4rem;">
+      <div class="container profile-hero-grid" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start;">
+        <div class="profile-card" style="flex:1; min-width:300px; padding:2rem; background:var(--glass-bg); border-radius:16px; border:1px solid var(--glass-border); text-align:center;">
+          <div class="profile-avatar" style="margin: 0 auto 1.5rem auto; width:140px; height:140px; border-radius:50%; overflow:hidden; border:4px solid var(--primary); box-shadow:0 8px 24px rgba(0,0,0,0.15); background:var(--primary); display:flex; align-items:center; justify-content:center; position:relative;">
+            <img id="profileImage" src="uploads/student_profile.jpg" alt="Profile picture" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:1;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+            <span style="font-size:4rem; color:#fff; font-weight:800; display:none; z-index:0;">S</span>
+          </div>
+          <h1 id="profileName" style="margin-bottom:0.2rem;">Loading...</h1>
+          <p id="profileRole" class="muted-text" style="text-transform:capitalize; margin-bottom:0.5rem; font-weight:600; color:var(--primary);">Loading...</p>
+          <p id="profileEmail" class="muted-text" style="margin-bottom:1.5rem; font-size:0.9rem;">...</p>
+          <div class="profile-meta-grid" style="display:grid; grid-template-columns:1fr; gap:1rem; text-align:left; background:rgba(0,0,0,0.02); padding:1.5rem; border-radius:12px;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.5rem;">
+              <strong>Form / Class</strong>
+              <span class="dim-text">Form 4A</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.5rem;">
+              <strong>Level</strong>
+              <span class="dim-text">O-Level</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.5rem;">
+              <strong>Year & Term</strong>
+              <span class="dim-text">2026, Term 3</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.5rem;">
+              <strong>Accommodation</strong>
+              <span class="dim-text">Hostel Resident / Day Scholar</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.5rem;">
+              <strong>Email</strong>
+              <span id="profileEmailMeta" class="dim-text">...</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.5rem;">
+              <strong>Status</strong>
+              <span id="profileStatus" class="badge-success badge" style="border-radius:12px; padding:0.2rem 0.6rem;">Active</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <strong>Member Since</strong>
+              <span class="dim-text">April 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-summary" style="flex:2; min-width:350px; padding:2rem; background:var(--glass-bg); border-radius:16px; border:1px solid var(--glass-border);">
+          <h2>Account Details</h2>
+          <p class="dim-text" style="margin-bottom:2rem;">Your personal academic hub. Manage your preferences, track your history, and stay updated.</p>
+          
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem;">
+            <div style="background:rgba(0,0,0,0.02); padding:1.5rem; border-radius:12px; text-align:center;">
+               <strong style="color:var(--primary); font-size:2rem; display:block; margin-bottom:0.5rem;" id="statCourses">0</strong>
+               <span class="dim-text">Active Courses</span>
+            </div>
+            <div style="background:rgba(0,0,0,0.02); padding:1.5rem; border-radius:12px; text-align:center;">
+               <strong style="color:var(--secondary); font-size:2rem; display:block; margin-bottom:0.5rem;">98%</strong>
+               <span class="dim-text">Platform Activity</span>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem;">
+            <h3>Update Information</h3>
+            <form id="editProfileForm" style="display:flex; flex-direction:column; gap:1rem; margin-top:1rem;">
+               <input type="text" id="editName" placeholder="Full Name" style="padding:0.8rem; border-radius:6px; border:1px solid var(--glass-border);" required>
+               <input type="email" id="editEmail" placeholder="Email Address" style="padding:0.8rem; border-radius:6px; border:1px solid var(--glass-border);" required>
+               <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt section-heading">
+      <div class="container">
+        <h2>Exam history</h2>
+        <p>Review your recent exam scores and see how your results have improved over time.</p>
+      </div>
+    </section>
+    <section class="container exam-results-grid">
+      <article class="exam-card exam-metrics">
+        <h3>Latest exam</h3>
+        <p>Biology Mock</p>
+        <span class="large-text">88%</span>
+      </article>
+      <article class="exam-card exam-graph">
+        <h3>Score trend</h3>
+        <div class="performance-graph">
+          <div class="graph-row"><span class="graph-label">Feb</span><div class="graph-track"><div class="graph-fill" style="width: 72%;"></div></div><span class="graph-value">72%</span></div>
+          <div class="graph-row"><span class="graph-label">Mar</span><div class="graph-track"><div class="graph-fill" style="width: 80%;"></div></div><span class="graph-value">80%</span></div>
+          <div class="graph-row"><span class="graph-label">Apr</span><div class="graph-track"><div class="graph-fill" style="width: 88%;"></div></div><span class="graph-value">88%</span></div>
+        </div>
+      </article>
+      <article class="exam-card exam-analysis">
+        <h3>Strengths</h3>
+        <ul class="analysis-list">
+          <li>Science practicals</li>
+          <li>Mathematics problem-solving</li>
+          <li>Essay structure</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-heading">
+      <div class="container">
+        <h2>Activity history</h2>
+        <p>Track your recent actions on LearnExpress—from quizzes and discussions to course progress.</p>
+      </div>
+    </section>
+    <section class="container assignment-grid">
+      <article class="assignment-card">
+        <h2>Recent activity</h2>
+        <ul>
+          <li>Completed Mathematics quiz • 14 Apr 2026</li>
+          <li>Joined History study group • 12 Apr 2026</li>
+          <li>Posted in Science forum • 10 Apr 2026</li>
+        </ul>
+      </article>
+      <article class="assignment-card">
+        <h2>Exam log</h2>
+        <ul>
+          <li>Biology Mock • 88%</li>
+          <li>Maths Paper 1 • 84%</li>
+          <li>English Literature review • 91%</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-alt section-heading">
+      <div class="container">
+        <h2>Settings</h2>
+        <p>Manage your account details, privacy, and appearance preferences.</p>
+      </div>
+    </section>
+    <section class="container exam-tools-grid">
+      <article class="exam-card">
+        <h3>Change password</h3>
+        <p>Update your password regularly to keep your account secure.</p>
+      </article>
+      <article class="exam-card">
+        <h3>Update email</h3>
+        <p>Change the email address linked to your LearnExpress account.</p>
+      </article>
+      <article class="exam-card">
+        <h3>Privacy settings</h3>
+        <p>Control who can see your profile activity and study group details.</p>
+      </article>
+      <article class="exam-card">
+        <h3>Theme preference</h3>
+        <p>Switch between light and dark mode to suit your study environment.</p>
+      </article>
+    </section>
+
+    <section class="feature-section">
+      <div class="container section-heading">
+        <h2>Explore other pages</h2>
+        <p>Use these links to continue your learning journey across courses, exams, and community support.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Courses</h3>
+          <p>Find lessons and topics to match your progress plan.</p>
+          <a class="link-button" href="courses.html">Browse courses</a>
+        </article>
+        <article class="feature-card">
+          <h3>Assignments</h3>
+          <p>See your active tasks and upcoming submitted work.</p>
+          <a class="link-button" href="assignments.html">View assignments</a>
+        </article>
+        <article class="feature-card">
+          <h3>Community</h3>
+          <p>Join forums, study groups, and teacher discussions.</p>
+          <a class="link-button" href="community.html">Open community</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 LearnExpress. Keep your profile updated and your progress on track.</p>
+      <div class="footer-links"><a href="index.html">Back to home</a></div>
+    </div>
+  </footer>
+  <script src="script.js?v=20260419e"></script>
+</body>
+</html>
